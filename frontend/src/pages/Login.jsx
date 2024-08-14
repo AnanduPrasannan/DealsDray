@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {register } from 'react-hook-form'
+import {useForm } from 'react-hook-form'
 
 const Login = () => {
-cons
+const {register}=useForm()
   return (
     <div>
          <div className='h-screen flex justify-center items-center'>
