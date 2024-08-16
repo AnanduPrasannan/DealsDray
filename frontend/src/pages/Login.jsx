@@ -3,26 +3,32 @@ import { Link } from 'react-router-dom'
 import {useForm } from 'react-hook-form'
 
 const Login = () => {
-const {register}=useForm()
+const {register,handleSubmit,formState:{errors}}=useForm()
+
+const onsubmit=(data)=>{
+    console.log(data)
+}
   return (
     <div>
          <div className='h-screen flex justify-center items-center'>
         <div className=' p-10 w-1/3 h-auto shadow-2xl ' >
             <h1 className='font-bold text-2xl mt-5 mb-4'>Sign In</h1>
-            <form action="" className='mb-8'>
+            <form action="" className='mb-8' onSubmit={handleSubmit(onsubmit)}>
                
                 <div className='mb-4'>
 
                 <label htmlFor=""  className='flex flex-col'>
                     Email
-                    <input type="email" placeholder='Email' className='border border-gray-400 p-1 rounded-sm placeholder:text-slate-200 focus:ring-2 ring-blue-500 outline-none' />
+                    <input type="email" placeholder='Email' className='border border-gray-400 p-1 rounded-sm placeholder:text-slate-200 focus:ring-2 ring-blue-500 outline-none' {...register('email',{required:"Email is required"})} />
+                    {errors.email && (<span className='text-red-500'>{errors.email.message}</span>)}
                 </label>
                 </div>
                 <div className='mb-4'>
 
                 <label htmlFor="" className='flex flex-col'>
                 Password
-                    <input type="password" placeholder='Password' className='border border-gray-400 p-1 rounded-sm placeholder:text-slate-200 focus:ring-2 ring-blue-500 outline-none' />
+                    <input type="password" placeholder='Password' className='border border-gray-400 p-1 rounded-sm placeholder:text-slate-200 focus:ring-2 ring-blue-500 outline-none' {...register('password',{required:"Password field is required"})} />
+                    {errors.password && (<span className='text-red-500'>{errors.password.message}</span>)}
                 </label>
                 </div>
                
