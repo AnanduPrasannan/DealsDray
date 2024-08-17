@@ -1,19 +1,32 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import *  as apiClient from '../apiClient.js'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 
 const Register = () => {
+    
     const {register,watch,handleSubmit,formState:{errors}}=useForm()
 
-    const onsubmit=(data)=>{
-        console.log(data)
+   const mutation=useMutation(apiClient.userRegister,{
+    onSuccess:()=>{
+        console.log('data sent to backend')
+    },
+    onError:()=>{
+        console.log('data not sent to backend')
     }
+
+   })
+
+    const onsubmit=handleSubmit((data)=>{
+        mutation.mutate(data)
+    })
   return (
     <div className='h-screen flex justify-center items-center'>
         <div className=' p-10 w-1/3 h-auto shadow-2xl ' >
             <h1 className='font-bold text-2xl mt-5 mb-4'>Sign Up</h1>
-            <form action="" className='mb-8' onSubmit={handleSubmit(onsubmit)}>
+            <form action="" className='mb-8' onSubmit={onsubmit}>
                 <div className='mb-4'>
 
                 <label htmlFor="" className='flex flex-col '>
