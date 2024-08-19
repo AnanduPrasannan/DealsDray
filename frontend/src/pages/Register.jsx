@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import *  as apiClient from '../apiClient.js'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-
+import {useMutation} from 'react-query'
 
 const Register = () => {
     
@@ -19,9 +18,9 @@ const Register = () => {
 
    })
 
-    const onsubmit=handleSubmit((data)=>{
-        mutation.mutate(data)
-    })
+ const onsubmit=handleSubmit((data)=>{
+   mutation.mutate(data)
+ })
   return (
     <div className='h-screen flex justify-center items-center'>
         <div className=' p-10 w-1/3 h-auto shadow-2xl ' >

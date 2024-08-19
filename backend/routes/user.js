@@ -30,7 +30,7 @@ router.post('/register',[check('name','This field is required').isString(),
             maxAge:8640000,
             httpOnly:true
         })
-        res.status(200).json({message:"User saved Succesfully"})
+       return res.status(200).json({message:"User saved Succesfully"})
     }
    catch(err){
     res.status(500).json({message:"Error anandu"})

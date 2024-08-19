@@ -1,19 +1,35 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {useForm } from 'react-hook-form'
+import * as apiClient from '../apiClient.js'
+import {useMutation} from 'react-query'
+
 
 const Login = () => {
 const {register,handleSubmit,formState:{errors}}=useForm()
+const navigate=useNavigate()
+const mutation=useMutation(apiClient.userLogin,{
+    onSuccess:()=>{
+        console.log('data sent to backend')
+        navigate('/')
+    },
+    onError:()=>{
+        console.log('data not sent to backend')
+    }
 
-const onsubmit=(data)=>{
-    console.log(data)
-}
+   })
+
+    const onsubmit=handleSubmit((data)=>{
+        mutation.mutate(data)
+    })
+
+
   return (
     <div>
          <div className='h-screen flex justify-center items-center'>
         <div className=' p-10 w-1/3 h-auto shadow-2xl ' >
             <h1 className='font-bold text-2xl mt-5 mb-4'>Sign In</h1>
-            <form action="" className='mb-8' onSubmit={handleSubmit(onsubmit)}>
+            <form action="" className='mb-8' onSubmit={onsubmit}>
                
                 <div className='mb-4'>
 
