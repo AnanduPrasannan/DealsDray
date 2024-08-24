@@ -10,13 +10,11 @@ export const userRegister=async (data)=>{
         body:JSON.stringify(data)
     })
 
-    const responseBody=await response.json()
-
+    
     if(!response.ok){
-        throw new Error(responseBody.message)
+        throw new Error(response.message)                 //If you write "error fetching" , then it will be displayed in mutation function
     }
-   
-   
+    return response.json()
 
 }
 
@@ -28,15 +26,14 @@ export const userLogin=async(data)=>{
         headers:{
             'Content-type':"application/json"
         },
-        body:JSON.stringify(data)
+        body:data
     })
 
-    const responseBody=await response.json()
 
     if(!response.ok){
-        throw new Error(responseBody.message)
+        throw new Error("Error fetching user at login")
     }
    
-    return responseBody
+    return response.json()
 
 }

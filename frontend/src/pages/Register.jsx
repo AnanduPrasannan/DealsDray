@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import *  as apiClient from '../apiClient.js'
+import *  as apiClient from '../apiClient'
 import {useMutation} from 'react-query'
 
 const Register = () => {
@@ -12,13 +12,14 @@ const Register = () => {
     onSuccess:()=>{
         console.log('data sent to backend')
     },
-    onError:()=>{
-        console.log('data not sent to backend')
+    onError:(error)=>{
+        console.log('data not sent to backend',error.message)
     }
 
    })
 
  const onsubmit=handleSubmit((data)=>{
+    console.log(data)
    mutation.mutate(data)
  })
   return (
