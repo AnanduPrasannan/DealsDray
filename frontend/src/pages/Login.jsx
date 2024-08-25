@@ -2,19 +2,22 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {useForm } from 'react-hook-form'
 import * as apiClient from '../apiClient.js'
-import {useMutation} from 'react-query'
+import {useMutation} from 'react-query' 
+import { useAppContext } from '../context/AppContext.jsx'
 
 
 const Login = () => {
+    const {showToast}=useAppContext()
 const {register,handleSubmit,formState:{errors}}=useForm()
 const navigate=useNavigate()
 const mutation=useMutation(apiClient.userLogin,{
     onSuccess:()=>{
-        console.log('data sent to backend')
+        showToast({toast:"Logged in successfully",type:'success'})
         navigate('/')
     },
     onError:()=>{
-        console.log('data not sent to backend')
+        showToast({toast:"Error Logging in success",type:'error'})
+
     }
 
    })

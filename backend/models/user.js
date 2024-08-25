@@ -14,8 +14,7 @@ email:{
 password:{
     type:String,
     required:true,
-    min:6,
-    max:20
+    
 }
 })
 userSchema.pre('save',async function (next){

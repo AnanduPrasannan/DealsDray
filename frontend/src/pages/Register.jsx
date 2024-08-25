@@ -48,7 +48,7 @@ const Register = () => {
 
                 <label htmlFor="" className='flex flex-col'>
                 Password
-                <input type="password" placeholder='Password' className='border border-gray-400 p-1 rounded-sm placeholder:text-slate-200 focus:ring-2 ring-blue-500 outline-none' {...register('Password',{required:"Password field is required",minLength:{value:6,message:"Password should be atleast 6 characters"}})} />
+                <input type="password" placeholder='Password' className='border border-gray-400 p-1 rounded-sm placeholder:text-slate-200 focus:ring-2 ring-blue-500 outline-none' {...register('password',{required:"Password field is required",minLength:{value:6,message:"Password should be atleast 6 characters"}})} />
                 {errors.Password && (<span className='text-red-500'>{errors.Password.message}</span>)}
                 </label>
                 </div>

@@ -18,7 +18,7 @@ router.post('/register',[check('name','This field is required').isString(),
     try{
         let user=await User.findOne({email:req.body.email})
         if(user){
-            res.status(400).json({message:"Email already exist"})
+           res.status(400).json({message:"Email already exist"})
         }
         user=new User(req.body)
         await user.save()
@@ -33,7 +33,7 @@ router.post('/register',[check('name','This field is required').isString(),
        return res.status(200).json({message:"User saved Succesfully"})
     }
    catch(err){
-    res.status(500).json({message:"Error anandu"})
+    res.status(500).json({message:"something wrong user side"})
     console.log(err)
    }
 })
