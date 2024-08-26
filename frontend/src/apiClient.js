@@ -30,12 +30,14 @@ export const userLogin=async(data)=>{
         body:JSON.stringify(data)
 
     })
+    const responseBody=await response.json()
 
 
     if(!response.ok){
-        throw new Error("Error fetching user at login")
+        console.error(responseBody)
+        throw new Error("Error fetching user at login",responseBody.message)
     }
    
-    return response.json()
+    return responseBody
 
 }

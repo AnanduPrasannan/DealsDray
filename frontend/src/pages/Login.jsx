@@ -12,11 +12,11 @@ const {register,handleSubmit,formState:{errors}}=useForm()
 const navigate=useNavigate()
 const mutation=useMutation(apiClient.userLogin,{
     onSuccess:()=>{
-        showToast({toast:"Logged in successfully",type:'success'})
+        showToast({message:"Logged in successfully",type:'success'})
         navigate('/')
     },
-    onError:()=>{
-        showToast({toast:"Error Logging in success",type:'error'})
+    onError:(error)=>{
+        showToast({message:error.message,type:'error'})
 
     }
 
