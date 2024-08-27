@@ -5,16 +5,16 @@ import Toast from '../components/Toast'
 const AppContext=createContext()
 
 export const AppContextProvider=({children})=>{
-    const [toast,setToast]=useState()
-    const showToast=({toast})=>{
-        setToast(toast)
-        console.log()
+    const [toasts,setToast]=useState()
+    const showToast=({toasts})=>{
+        setToast(toasts)
+        console.log(toasts)
     }
 
     return(
 
     <AppContext.Provider value={{showToast}}>
-      {toast && ( <Toast type={toast.type} onClose={()=>setToast()} message={toast.message} />)}
+      {toasts && ( <Toast type={toasts.type} onClose={()=>setToast()} message={toasts.message} />)}
         {children}
     </AppContext.Provider>
     )

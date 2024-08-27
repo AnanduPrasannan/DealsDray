@@ -13,10 +13,12 @@ const navigate=useNavigate()
 const mutation=useMutation(apiClient.userLogin,{
     onSuccess:()=>{
         showToast({message:"Logged in successfully",type:'success'})
+        console.log()
         navigate('/')
     },
     onError:(error)=>{
         showToast({message:error.message,type:'error'})
+        console.log(error.message)
 
     }
 
