@@ -11,9 +11,9 @@ const Header = () => {
             <div className='text-lg  font-medium p-2 rounded-md hover:bg-black hover:text-white'>
               Name
             </div>
-            <div className='text-lg  font-medium p-2 rounded-md hover:bg-blue-600 hover:text-white'>
+            <Link to='/login' className='text-lg  font-medium p-2 rounded-md hover:bg-blue-600 hover:text-white'>
               logout
-            </div>
+            </Link>
            </div>
         </div>
     </div>

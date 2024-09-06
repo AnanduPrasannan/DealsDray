@@ -41,3 +41,16 @@ export const userLogin=async(data)=>{
     return responseBody
 
 }
+
+
+export const userLogout=async()=>{
+const response=await fetch('http://localhost:3000/api/auth/logout',{
+method:'POST',
+
+})
+
+if(!response.ok){
+    throw new Error("Error happened at logout")
+}
+
+}

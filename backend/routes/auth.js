@@ -44,4 +44,18 @@ router.post('/login',[check('email','Email field is required').isEmail(),
    
 })
 
+router.post('/logout', (req,res)=>{
+    try{
+
+        res.cookie('auth_token','',{
+            expires:new Date(0),
+            httpOnly:true
+        })
+        res.status(200).json({message:`Logged out succesfully`})
+    }
+    catch(err){
+        console.log(err)
+    }
+})
+
 export default router
