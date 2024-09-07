@@ -42,11 +42,22 @@ export const userLogin=async(data)=>{
 
 }
 
+export const validateToken=async()=>{
+    const response=await fetch('http://localhost:3000/api/auth/validateToken',{
+        credentials:'include'
+    })
+
+    if(!response.ok){
+
+        throw new Error("Somekind of problem in validating token")
+    }
+    return response.json()
+}
 
 export const userLogout=async()=>{
 const response=await fetch('http://localhost:3000/api/auth/logout',{
 method:'POST',
-
+credentials:'include'
 })
 
 if(!response.ok){

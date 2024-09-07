@@ -44,6 +44,10 @@ router.post('/login',[check('email','Email field is required').isEmail(),
    
 })
 
+router.get('/validateToken',(req,res)=>{
+    res.send({userId:req.userId})
+})
+
 router.post('/logout', (req,res)=>{
     try{
 
