@@ -1,16 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import *  as apiClient from '../apiClient'
-import {useMutation} from 'react-query'
+import {useMutation, useQueryClient} from 'react-query'
 
 const Register = () => {
+    const queryClient=useQueryClient()
+    const navigate=useNavigate()
     
     const {register,watch,handleSubmit,formState:{errors}}=useForm()
 
    const mutation=useMutation(apiClient.userRegister,{
-    onSuccess:()=>{
+    onSuccess:async ()=>{
         console.log('data sent to backend')
+        await queryClient.invalidateQueries('validateToken')
+        navigate('/')
     },
     onError:(error)=>{
         console.log('data not sent to backend',error.message)

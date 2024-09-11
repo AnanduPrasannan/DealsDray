@@ -2,6 +2,7 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import User from '../models/user.js'
+import verifyToken from '../middlewares/verifyToken.js'
 import { check, validationResult } from 'express-validator'
 
 const router=express.Router()
@@ -28,7 +29,7 @@ router.post('/login',[check('email','Email field is required').isEmail(),
         }
 
         const token=jwt.sign({userId:user._id},process.env.SECRET_KEY,{
-            expiresIn:'1h'
+            expiresIn:'1d'
         })
         
         res.cookie('auth_token',token,{
@@ -44,22 +45,17 @@ router.post('/login',[check('email','Email field is required').isEmail(),
    
 })
 
-router.get('/validateToken',(req,res)=>{
-    res.send({userId:req.userId})
+router.get('/validateToken',verifyToken,(req,res)=>{
+    res.status(200).send({userId:req.userId})
 })
 
 router.post('/logout', (req,res)=>{
-    try{
 
         res.cookie('auth_token','',{
-            expires:new Date(0),
-            httpOnly:true
+            expires:new Date(0)
+           
         })
-        res.status(200).json({message:`Logged out succesfully`})
-    }
-    catch(err){
-        console.log(err)
-    }
+        res.send()
 })
 
 export default router

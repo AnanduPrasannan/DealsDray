@@ -8,7 +8,11 @@ const AppContext=createContext()
 
 export const AppContextProvider=({children})=>{
     const [toasts,setToast]=useState()
-    const {isError}=useQuery('validateToken',apiClient.validateToken)
+    const {isError}=useQuery('validateToken',apiClient.validateToken,{
+        retry:false,
+        refetchOnWindowFocus:false
+    })
+    console.log(isError)
     const showToast=({toasts})=>{
         setToast(toasts)
         console.log(toasts)
